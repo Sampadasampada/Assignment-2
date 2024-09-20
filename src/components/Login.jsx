@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import * as yup from 'yup';
 import { login } from '../features/auth/authSlice';
 import './Login.css';
@@ -38,56 +37,35 @@ function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className="login-container">
-      <Box className="login-box">
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            error={!!errors.email}
-            helperText={errors.email}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          {errors.form && (
-            <Typography color="error" align="center">
-              {errors.form}
-            </Typography>
-          )}
-        </Box>
-      </Box>
-    </Container>
+    <div className="login-container">
+      <div className="login-box">
+        <h1>Sign in</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errors.password && <span className="error">{errors.password}</span>}
+          </div>
+          <button type="submit" className="login-button">Sign In</button>
+          {errors.form && <p className="error">{errors.form}</p>}
+        </form>
+      </div>
+    </div>
   );
 }
 

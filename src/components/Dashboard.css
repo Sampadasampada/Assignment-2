@@ -1,27 +1,51 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  .dashboard-content {
-    display: flex;
-    flex: 1;
-  }
-  
-  .main-content {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .dashboard-card {
-    padding: 20px;
-    height: 100%;
-  }
-  
-  .profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.dashboard-content {
+  display: flex;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.dashboard-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+ul {
+  padding-left: 20px;
+}

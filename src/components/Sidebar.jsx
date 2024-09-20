@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Dashboard as DashboardIcon, Person as PersonIcon, CalendarToday as CalendarIcon, ExitToApp as LogoutIcon } from '@mui/icons-material';
 import { logout } from '../features/auth/authSlice';
 import './Sidebar.css';
 
@@ -22,27 +20,25 @@ function Sidebar() {
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard/:id' },
-    { text: 'My Profile', icon: <PersonIcon />, path: '/profile/:id' },
-    { text: 'Calendar', icon: <CalendarIcon />, path: '/calendar' },
-    { text: 'Logout', icon: <LogoutIcon />, path: '/logout' },
+    { text: 'Dashboard', path: '/dashboard/:id' },
+    { text: 'My Profile', path: '/profile/:id' },
+    { text: 'Calendar', path: '/calendar' },
+    { text: 'Logout', path: '/logout' },
   ];
 
   return (
     <div className="sidebar">
-      <List>
+      <ul>
         {menuItems.map((item) => (
-          <ListItem
-            button
+          <li
             key={item.text}
+            className={location.pathname === item.path.replace(':id', id) ? 'active' : ''}
             onClick={() => handleNavigation(item.path)}
-            selected={location.pathname === item.path.replace(':id', id)}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
+            {item.text}
+          </li>
         ))}
-      </List>
+      </ul>
     </div>
   );
 }
